@@ -1,8 +1,8 @@
 <?php
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'pizzaria';
+$hostname = 'viaduct.proxy.rlwy.net';
+$username = 'postgres';
+$password = '-dFfd1gB6fB366eb-3134a2bG*11*feA';
+$database = 'railway';
 
 try {
     $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
