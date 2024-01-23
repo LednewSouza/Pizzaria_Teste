@@ -2,54 +2,9 @@
     include 'conect.php';
     include 'header.php';
 
-    $sele_opt = $pdo->prepare("SELECT DISTINCT `tipo` FROM `cardapio` WHERE tipo != ''");
+    $sele_opt = $pdo->prepare('SELECT DISTINCT "tipo" FROM "cardapio" WHERE "tipo" != \'\'');
     $sele_opt->execute();
     $resultados = $sele_opt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Verificar se o formulário foi enviado
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['adicionar'])) {
-        // Recuperar os dados do formulário
-        $sabor = $_POST["sabor"];
-        $itens = $_POST["itens"];
-        $peq = $_POST["peq"];
-        $med = $_POST["med"];
-        $gra = $_POST["gra"];
-        $tipo = $_POST['tipo'];
-
-        if ($tipo == 'Novo') {
-            $tipo = $_POST['new_tipo'];
-        }
-         // Processar a imagem (salvar em algum diretório no servidor, se necessário)
-         if ($_FILES['img']['name'] != '') {
-            $imagem_nome = $_FILES["img"]["name"];
-            $imagem_temp = $_FILES["img"]["tmp_name"];
-
-            // Construir o caminho completo para o destino da imagem
-            $destino = "imagens/pizzas/" . $imagem_nome;
-
-            // Move o arquivo temporário para o destino
-            move_uploaded_file($imagem_temp, $destino);
-        }
-
-        if ($tipo == 'Promocao') {
-            $data_in = $_POST['ini'];
-            $data_out = $_POST['out'];
-            $stmt = $pdo->prepare("INSERT INTO `promocoes`(`imagem`, `sabor`, `ingredientes`, `peque`, `media`, `grande`, `data_in`, `data_out`) VALUES ('$destino', '$sabor', '$itens', '$peq', '$med', '$gra', '$data_in', '$data_out')");
-        } else {
-            $stmt = $pdo->prepare("INSERT INTO `cardapio`(`imagem`, `nome`, `ingredientes`, `pequena`, `medio`, `grande`, `tipo`) VALUES ('$destino', '$sabor', '$itens', '$peq', '$med', '$gra', '$tipo')");
-        }
-
-        if ($stmt->execute()) {
-            $response = array('status' => 'success', 'message' => 'Registro adicionado com sucesso.');
-            echo json_encode($response);
-            exit; 
-        } else {
-            $response = array('status' => 'error', 'message' => 'Erro ao adicionar o registro.');
-            echo json_encode($response);
-            exit;
-        }
-    }
-
 ?>
 
 <style>

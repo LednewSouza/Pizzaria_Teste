@@ -1,11 +1,13 @@
 <?php 
+//phpinfo();
 include 'conect.php';
+
 // Exemplo de consulta preparada
 $stmt_pro = $pdo->prepare("SELECT * FROM promocoes");
 $stmt_pro->execute();
 $promo = $stmt_pro->fetchAll(PDO::FETCH_ASSOC);
 
-$sele_opt = $pdo->prepare("SELECT DISTINCT `tipo` FROM `cardapio` WHERE tipo != ''");
+$sele_opt = $pdo->prepare('SELECT DISTINCT "tipo" FROM "cardapio" WHERE "tipo" != \'\'');
 $sele_opt->execute();
 $resultados = $sele_opt->fetchAll(PDO::FETCH_ASSOC);
 
