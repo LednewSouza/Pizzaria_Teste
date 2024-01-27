@@ -12,22 +12,24 @@ $sele_opt->execute();
 $resultados = $sele_opt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ids'])) {
+    header('Content-Type: application/json');
     $ida = $_POST['ids'];
     $type = $_POST['tips'];
 
     if ($type == 'promocao') {
-        $exibi_pedido = $pdo->prepare("SELECT * FROM `promocoes` WHERE id = $ida");
+        $exibi_pedido = $pdo->prepare('SELECT * FROM "promocoes" WHERE "id" = :ides');
     } else {
-        $exibi_pedido = $pdo->prepare("SELECT * FROM `cardapio` WHERE id = $ida");
+        $exibi_pedido = $pdo->prepare('SELECT * FROM "cardapio" WHERE "id" = :ides');
     }
+    $exibi_pedido->bindParam(':ides', $ida, PDO::PARAM_INT); 
     $exibi_pedido->execute();
     $conjunto['promocoes'] = $exibi_pedido->fetchAll(PDO::FETCH_ASSOC);
 
-    $item = $pdo->prepare("SELECT * FROM `extras`");
+    $item = $pdo->prepare('SELECT * FROM "extras"');
     $item->execute();
     $conjunto['extras'] = $item->fetchAll(PDO::FETCH_ASSOC);
 
-    header('Content-Type: application/json');
+    
     echo json_encode($conjunto);
     exit;
 }
