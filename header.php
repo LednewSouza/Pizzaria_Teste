@@ -65,10 +65,7 @@ session_start();
             <img class="logo" src="https://www.detalhado.com.br/wp-content/uploads/2019/11/pizzaiolo.png">
             
             <div class="icons">
-                <span class="span_ico"><a href="mais.php"><i class="fa-solid fa-plus"></i></a></span>
-                <span class="span_ico"><a href="cardapio.php"><i class="fa-solid fa-pizza-slice"></i></a></span>
-                <span class="span_ico"><a href="user_info.php"><i class="fa-solid fa-user"></i></a></span>
-                <span class="span_ico"><a href="carrinho.php"><i class="fa-solid fa-bag-shopping"></i></a></span>
+
             </div>
         </div>
         <div class="descer"></div>
