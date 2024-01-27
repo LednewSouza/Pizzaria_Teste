@@ -1,5 +1,4 @@
 <?php 
-//phpinfo();
 include 'conect.php';
 
 // Exemplo de consulta preparada
