@@ -408,7 +408,7 @@ include 'header.php';
         if (id_gua != id_pedido) {
             abarecer()
             if (id_gua != id_pedido && id_gua != '') {
-                setTimeout(abarecer, 800)
+                setTimeout(abarecer, 1000)
                 setTimeout(gerar, 800)
             }
 
