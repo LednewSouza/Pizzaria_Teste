@@ -70,7 +70,13 @@ session_start();
         </div>
         <div class="descer"></div>
     </body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-630633267"></script>
     <script>
-
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-630633267');
     </script>
 </html>
